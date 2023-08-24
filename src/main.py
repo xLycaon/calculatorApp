@@ -1,11 +1,15 @@
 import tkinter as tk
 
 
-#TODO: add functionality to the buttons
-#TODO: string analyzer function
-#TODO: transform this program into an executable file
+#function to evaluate the expression and display the result
+def bt_equal(input_expression, text_box_1):
+    result = str(eval(input_expression))
+    text_box_1.delete(0,tk.END)
+    text_box_1.insert(0,result)
 
-input_expression =""
+
+
+
 
 def setup():
     #create the Window
@@ -20,7 +24,7 @@ def setup():
     #create the frame for the input field
     frame_txt = tk.Frame(window,highlightbackground='black',highlightthickness=2,bd=0,width=648)
     frame_txt.grid(row=0,column=0,ipadx=13)
-    text_box_1 = tk.Entry(frame_txt,width=36,justify='right',textvariable=input_expression,font=('Arial',18,'bold'))
+    text_box_1 = tk.Entry(frame_txt,width=36,justify='right',font=('Arial',18,'bold'))
     text_box_1.pack(expand=True,fill='both',side='left',ipadx=0,ipady=10)
 
     #create the frame for the buttons
@@ -40,7 +44,7 @@ def setup():
     button_9 = tk.Button(frame_btn,text='9',width=15,height=2,command=lambda: text_box_1.insert(tk.END,'9'),padx=10,pady=10)
     button_add = tk.Button(frame_btn,text='+',width=15,height=2,command=lambda: text_box_1.insert(tk.END,'+'),padx=10,pady=10)
     button_sub = tk.Button(frame_btn,text='-',width=15,height=2,command=lambda: text_box_1.insert(tk.END,'-'),padx=10,pady=10)
-    button_eq = tk.Button(frame_btn,text='=',width=15,height=2,command=lambda: text_box_1.insert(tk.END,'='),padx=10,pady=10)
+    button_eq = tk.Button(frame_btn,text='=',width=15,height=2,command=lambda: bt_equal(text_box_1.get(),text_box_1),padx=10,pady=10)
     button_mul = tk.Button(frame_btn,text='*',width=15,height=2,command=lambda: text_box_1.insert(tk.END,'*'),padx=10,pady=10)
     button_div = tk.Button(frame_btn,text='/',width=15,height=2,command=lambda: text_box_1.insert(tk.END,'/'),padx=10,pady=10)
     button_per = tk.Button(frame_btn,text='%',width=15,height=2,command=lambda: text_box_1.insert(tk.END,'%'),padx=10,pady=10)
@@ -70,12 +74,8 @@ def setup():
     dot_button.grid(row=5,column=2)
     #------------------ Layout ------------------
 
-
     window.mainloop()   
 
-
-def str_analyzer(str):
-    return None
 
 def main():
     setup()
